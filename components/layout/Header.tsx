@@ -17,11 +17,11 @@ export function Header() {
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 md:px-6">
         {/* Logo */}
         <Link href="/feed" className="flex items-center gap-2.5 select-none">
-          <span className="text-xl font-bold tracking-tight">
-            <span className="text-primary [text-shadow:0_0_20px_rgba(0,255,85,0.55),0_0_40px_rgba(0,255,85,0.25)]">Sat</span>
+          <span className="text-[22px] font-bold tracking-[-0.03em]">
+            <span className="text-primary">Sat</span>
             <span className="text-foreground">Wire</span>
           </span>
-          <span className="hidden text-xs text-muted-foreground/50 md:inline">
+          <span className="hidden text-xs text-muted-foreground/60 md:inline">
             Crypto nieuws – op één plek
           </span>
         </Link>
