@@ -9,7 +9,10 @@ import { CATEGORY_COLORS } from "@/lib/constants";
 import { timeAgo, truncate, decodeEntities } from "@/utils/format";
 import { createClient } from "@/lib/supabase/client";
 import { toast } from "sonner";
+import { ShareButton } from "@/components/common/ShareButton";
 import type { Article } from "@/types";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://satwire.app";
 
 interface NewsCardProps {
   article: Article;
@@ -143,6 +146,11 @@ export function NewsCard({ article }: NewsCardProps) {
                   <Bookmark className="h-3.5 w-3.5" />
                 )}
               </button>
+              <ShareButton
+                url={`${SITE_URL}/article/${article.id}`}
+                title={title}
+                variant="icon"
+              />
             </div>
           </div>
 

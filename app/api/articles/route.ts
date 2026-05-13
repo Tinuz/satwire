@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
   let dbQuery = supabase
     .from("articles")
     .select(
-      `id, title, url, image_url, summary, published_at, category, coins, is_breaking,
+      `id, title, url, image_url, summary, published_at, category, coins, is_breaking, sentiment,
        source:sources(id, name, logo_url, url)`
     )
     .order("published_at", { ascending: false })

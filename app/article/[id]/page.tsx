@@ -7,7 +7,10 @@ import { createClient } from "@/lib/supabase/server";
 import { Badge } from "@/components/ui/badge";
 import { CATEGORY_COLORS } from "@/lib/constants";
 import { timeAgo, decodeEntities } from "@/utils/format";
+import { ShareButton } from "@/components/common/ShareButton";
 import type { Article } from "@/types";
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://satwire.app";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -18,15 +21,14 @@ async function getArticle(id: string): Promise<Article | null> {
   const { data, error } = await supabase
     .from("articles")
     .select(
-      `id, title, url, image_url, summary, published_at, category, coins, is_breaking,
+      `id, title, url, image_url, summary, published_at, category, coins, is_breaking, sentiment,
        source:sources(id, name, logo_url, url)`
     )
     .eq("id", id)
     .single();
 
   if (error || !data) return null;
-  // Default sentiment to 'neutral' until migration is applied
-  return { sentiment: "neutral", ...data } as unknown as Article;
+  return data as unknown as Article;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -175,6 +177,12 @@ export default async function ArticlePage({ params }: Props) {
                 {coins.join(", ")}
               </span>
             )}
+            <ShareButton
+              url={`${SITE_URL}/article/${id}`}
+              title={decodeEntities(title)}
+              variant="full"
+              className="ml-auto text-muted-foreground"
+            />
           </div>
 
           {/* Hero image */}

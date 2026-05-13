@@ -66,16 +66,19 @@ export async function GET() {
     const data = await res.json() as Array<{
       symbol: string;
       lastPrice: string;
-      priceChangePercent: string;
+      openPrice: string;
     }>;
 
     const prices: CoinPrice[] = data.map((item) => {
       const sym = SYMBOL_MAP[item.symbol] ?? item.symbol.replace("USDT", "");
+      const last = parseFloat(item.lastPrice);
+      const open = parseFloat(item.openPrice);
+      const change24h = open > 0 ? ((last - open) / open) * 100 : 0;
       return {
         id: COINGECKO_ID[sym] ?? sym.toLowerCase(),
         symbol: sym,
-        price: parseFloat(item.lastPrice),
-        change24h: parseFloat(item.priceChangePercent),
+        price: last,
+        change24h,
       };
     }).filter((c) => c.price > 0);
 

@@ -52,9 +52,12 @@ const TickerStrip = memo(function TickerStrip({ prices }: { prices: CoinPrice[] 
     </div>
   );
 }, (prev, next) => {
-  // Skip re-render (keep animation running) if prices haven't changed significantly
+  // Only skip re-render when prices AND changes are identical (avoid animation reset on unrelated renders)
   if (prev.prices.length !== next.prices.length) return false;
-  return prev.prices.every((p, i) => p.id === next.prices[i]?.id);
+  return prev.prices.every((p, i) => {
+    const n = next.prices[i];
+    return p.id === n?.id && p.price === n?.price && p.change24h === n?.change24h;
+  });
 });
 
 export function PriceTicker() {
