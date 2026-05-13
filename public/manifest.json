@@ -1,0 +1,40 @@
+{
+  "name": "SatWire – Crypto News",
+  "short_name": "SatWire",
+  "description": "Crypto nieuws vanuit alle bronnen – op één plek.",
+  "start_url": "/feed",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "orientation": "portrait-primary",
+  "lang": "nl",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nieuws feed",
+      "short_name": "Feed",
+      "url": "/feed",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Zoeken",
+      "short_name": "Zoeken",
+      "url": "/search",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "categories": ["news", "finance"]
+}
